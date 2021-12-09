@@ -45,4 +45,8 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 @import "~bootstrap/scss/helpers";
 
+@import "~bootstrap/scss/utilities/api";
+
 @import "~bootswatch/dist/darkly/bootswatch";
+
+@import "./components";
