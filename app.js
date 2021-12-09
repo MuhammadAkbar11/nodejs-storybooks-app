@@ -21,7 +21,9 @@ if (process.env.NODE_ENV === "development") {
 app.engine("hbs", exphbs.engine({ defaultLayout: "main", extname: ".hbs" }));
 app.set("view engine", ".hbs");
 app.set("views", path.join(__dirname, "views/"));
-console.log(path.join(__dirname, "views"));
+
+app.use(express.static(path.join(__dirname, "assets")));
+
 // Routes
 app.use("/", require("./routes/index"));
 

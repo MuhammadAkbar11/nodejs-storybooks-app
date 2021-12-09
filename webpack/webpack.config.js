@@ -6,7 +6,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   entry: {
-    srcipt: path.resolve(__dirname, "../src/index.js"),
+    main: path.resolve(__dirname, "../src/index.js"),
   },
   devtool: "source-map",
   watch: true,
@@ -76,7 +76,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: "css/[name].min.css",
+      filename: "css/main.min.css",
     }),
   ],
 };
