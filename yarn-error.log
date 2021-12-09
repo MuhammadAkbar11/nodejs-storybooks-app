@@ -1,0 +1,42 @@
+Arguments: 
+  /home/laplace/.nvm/versions/node/v14.17.6/bin/node /home/laplace/.nvm/versions/node/v14.17.6/bin/yarn add express mongoose connect-mongo express-session express-handlebars dotenv method-overriede moment morgan passport passport-google-oauth20
+
+PATH: 
+  /home/laplace/.nvm/versions/node/v14.17.6/bin:/home/laplace/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/laplace/.yarn/bin
+
+Yarn version: 
+  1.22.11
+
+Node version: 
+  14.17.6
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/method-overriede: Not found
+      at Request.params.callback [as _callback] (/home/laplace/.nvm/versions/node/v14.17.6/lib/node_modules/yarn/lib/cli.js:66992:18)
+      at Request.self.callback (/home/laplace/.nvm/versions/node/v14.17.6/lib/node_modules/yarn/lib/cli.js:140763:22)
+      at Request.emit (events.js:400:28)
+      at Request.<anonymous> (/home/laplace/.nvm/versions/node/v14.17.6/lib/node_modules/yarn/lib/cli.js:141735:10)
+      at Request.emit (events.js:400:28)
+      at IncomingMessage.<anonymous> (/home/laplace/.nvm/versions/node/v14.17.6/lib/node_modules/yarn/lib/cli.js:141657:12)
+      at Object.onceWrapper (events.js:519:28)
+      at IncomingMessage.emit (events.js:412:35)
+      at endReadableNT (internal/streams/readable.js:1317:12)
+      at processTicksAndRejections (internal/process/task_queues.js:82:21)
+
+npm manifest: 
+  {
+    "name": "nodejs-storybook",
+    "version": "1.0.0",
+    "description": "Application to create public and private stories",
+    "main": "app.js",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
