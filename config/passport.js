@@ -11,7 +11,27 @@ module.exports = function (passport) {
         callbackURL: "/auth/google/callback",
       },
       async (accessToken, refreshToken, profile, done) => {
-        console.log(profile);
+        const newUser = {
+          googleId: profile.id,
+          displayName: profile.displayName,
+          firstName: profile.name?.familyName,
+          lastName: profile.name?.givenName,
+          image: profile.photos[0]?.value,
+        };
+
+        try {
+          const user = await UserModel.findOne({ googleId: profile.id });
+
+          if (user) {
+            done(null, user);
+          } else {
+            await UserModel.create(newUser);
+            done(null, newUser);
+          }
+        } catch (error) {
+          console.log(error);
+          throw new Error(error);
+        }
       }
     )
   );
@@ -19,8 +39,10 @@ module.exports = function (passport) {
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });
+
   passport.deserializeUser((id, done) => {
-    UserModel.findById(id, (err, user) => {
+    console.log(id);
+    const user = UserModel.findById(id, function (err, user) {
       done(err, user);
     });
   });
