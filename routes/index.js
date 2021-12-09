@@ -1,14 +1,11 @@
 const express = require("express");
+const { getLogin } = require("../controllers/auth.controller");
 
 const router = express.Router();
 
 // @desc Login/Langing Page
 // @route GET /
-router.get("/", (req, res) => {
-  res.render("login", {
-    layout: "login",
-  });
-});
+router.get("/", getLogin);
 
 // @desc Dashboard
 // @route GET /dashboard
