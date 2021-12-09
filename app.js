@@ -7,6 +7,8 @@ const connectDB = require("./config/db");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
 // const connectDB = require
+const mainRoutes = require("./routes/index");
+const authRoutes = require("./routes/auth");
 
 // Load config
 dotenv.config({ path: "./config/config.env" });
@@ -44,7 +46,8 @@ app.use(passport.session({}));
 app.use(express.static(path.join(__dirname, "assets")));
 
 // Routes
-app.use("/", require("./routes/index"));
+app.use("/", mainRoutes);
+app.use("/auth", authRoutes);
 
 const PORT = process.env.PORT || 3000;
 const MODE = process.env.NODE_ENV;

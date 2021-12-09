@@ -3,3 +3,7 @@ exports.getLogin = (req, res) => {
     layout: "login",
   });
 };
+
+exports.getGoogleAuthCallback = (req, res) => {
+  res.redirect("/dashboard");
+};
