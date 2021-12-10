@@ -6,9 +6,14 @@ const passport = require("passport");
 const connectDB = require("./config/db");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
-// const connectDB = require
 const mainRoutes = require("./routes/index");
 const authRoutes = require("./routes/auth");
+const {
+  NODE_ENV,
+  DEV_MODE,
+  SESSION_SECRET,
+  PORT,
+} = require("./utils/contants");
 
 // Load config
 dotenv.config({ path: "./config/config.env" });
@@ -20,7 +25,7 @@ connectDB();
 
 const app = express();
 
-if (process.env.NODE_ENV === "development") {
+if (NODE_ENV === DEV_MODE) {
   app.use(morgan("dev"));
 }
 
@@ -33,7 +38,7 @@ app.set("views", path.join(__dirname, "views/"));
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })
@@ -49,8 +54,7 @@ app.use(express.static(path.join(__dirname, "assets")));
 app.use("/", mainRoutes);
 app.use("/auth", authRoutes);
 
-const PORT = process.env.PORT || 3000;
-const MODE = process.env.NODE_ENV;
+const MODE = NODE_ENV;
 
 app.listen(PORT, res => {
   console.log(`Server running ${MODE} mode on port ${PORT}`);
