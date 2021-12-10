@@ -3,13 +3,14 @@ const passport = require("passport");
 const {
   getLogin,
   getGoogleAuthCallback,
+  postLogout,
 } = require("../controllers/auth.controller");
 
 const router = express.Router();
 
-// @desc Login/Langing Page
-// @route GET /
-router.get("/auth", getLogin);
+// @desc Login
+// @route GET /auth
+router.get("/", getLogin);
 
 // @desc Auth with Goole
 // @route GET /auth/google
@@ -30,5 +31,9 @@ router.get(
   }),
   getGoogleAuthCallback
 );
+
+// @desc Auth Logout
+// @route POST /auth/logout
+router.post("/logout", postLogout);
 
 module.exports = router;

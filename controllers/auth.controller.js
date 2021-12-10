@@ -4,6 +4,11 @@ exports.getLogin = (req, res) => {
   });
 };
 
+exports.postLogout = (req, res) => {
+  req.logout();
+  res.redirect("/");
+};
+
 exports.getGoogleAuthCallback = (req, res) => {
   res.redirect("/dashboard");
 };
