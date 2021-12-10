@@ -1,0 +1,75 @@
+.header-nav-left {
+  .nav-link {
+    font-size: 18px;
+
+    color: $light !important;
+
+    &:hover {
+      color: $gray-300 !important;
+    }
+
+    &.active,
+    &[aria-current="page"] {
+      font-weight: 500;
+      &:hover {
+        font-weight: 500;
+        color: $gray-300 !important;
+      }
+    }
+  }
+}
+
+.header-nav-right {
+  .nav-link {
+    font-size: 17px;
+
+    color: $light !important;
+
+    &:hover {
+      color: $gray-300 !important;
+    }
+
+    &.active,
+    &[aria-current="page"] {
+      font-weight: 500;
+      &:hover {
+        font-weight: 500;
+        color: $gray-300 !important;
+      }
+    }
+  }
+}
+
+.toggle-mobile-menu {
+  color: $gray-400;
+  transition: 0.2s all ease-in-out;
+  &:hover {
+    color: $light;
+    transform: scale(1.1);
+  }
+}
+
+.mobile-menu {
+  & .mobile-menu-body .mobile-menu-nav {
+    $py: 1rem * 0.3;
+    .nav-item {
+      padding: $py 0;
+      &:hover {
+        background-color: darken($light, $amount: 5);
+      }
+    }
+    hr {
+      color: $gray-600;
+    }
+    .nav-item .nav-link {
+      color: $gray-600;
+      &:hover {
+        color: $gray-800;
+      }
+      &.active {
+        font-weight: 800;
+        color: $primary;
+      }
+    }
+  }
+}

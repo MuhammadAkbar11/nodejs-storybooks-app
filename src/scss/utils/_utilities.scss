@@ -1,12 +1,18 @@
 $utilities: map-merge(
   $utilities,
   (
-    // "border":
-    //   map-merge(
-    //     map-get($utilities, "border"),
-    //     (
-    //       responsive: true,
-    //     )
-    //   ),
+    "opacity": (
+      property: opacity,
+      class: opacity,
+      state: hover,
+      values: (
+        0: 0,
+        25: 0.25,
+        50: 0.5,
+        75: 0.75,
+        85: 0.85,
+        100: 1,
+      ),
+    ),
   )
 );
