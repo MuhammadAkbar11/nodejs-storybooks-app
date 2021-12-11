@@ -6,8 +6,10 @@ exports.getIndex = (req, res) => {
 };
 
 exports.getDashboard = (req, res) => {
+  console.log(req.user);
   res.render("dashboard", {
     title: "Dashboard",
     path: "/dashboard",
+    user: req.user,
   });
 };
