@@ -1,32 +1,10 @@
-.header-nav-left {
+.header-nav {
   .nav-link {
-    font-size: 18px;
-
-    color: $light !important;
-
-    &:hover {
-      color: $gray-300 !important;
-    }
-
-    &.active,
-    &[aria-current="page"] {
-      font-weight: 500;
-      &:hover {
-        font-weight: 500;
-        color: $gray-300 !important;
-      }
-    }
-  }
-}
-
-.header-nav-right {
-  .nav-link {
+    margin-left: 1.25rem;
     font-size: 17px;
-
-    color: $light !important;
-
+    color: $gray-700 !important;
     &:hover {
-      color: $gray-300 !important;
+      color: $primary !important;
     }
 
     &.active,
@@ -34,7 +12,7 @@
       font-weight: 500;
       &:hover {
         font-weight: 500;
-        color: $gray-300 !important;
+        color: $primary !important;
       }
     }
   }
@@ -76,13 +54,13 @@
 
 .footer-nav {
   .nav-item .nav-link {
-    color: $gray-300 !important;
+    color: lighten($secondary, $amount: 30) !important;
     &:hover {
-      color: lighten($primary, $amount: 8) !important;
+      color: $light !important;
     }
     &.active {
       font-weight: 800 !important;
-      color: $primary !important;
+      color: $light !important;
     }
   }
 }
