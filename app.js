@@ -2,10 +2,12 @@ const dotenv = require("dotenv");
 const path = require("path");
 const morgan = require("morgan");
 const express = require("express");
+const mongoose = require("mongoose");
 const passport = require("passport");
 const connectDB = require("./config/db");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const mainRoutes = require("./routes/index");
 const authRoutes = require("./routes/auth");
 const {
@@ -13,6 +15,7 @@ const {
   DEV_MODE,
   SESSION_SECRET,
   PORT,
+  MONGO_URI,
 } = require("./utils/contants");
 
 // Load config
@@ -24,6 +27,10 @@ require("./config/passport")(passport);
 connectDB();
 
 const app = express();
+const store = MongoStore.create({
+  mongoUrl: MONGO_URI,
+  collection: "sessions",
+});
 
 if (NODE_ENV === DEV_MODE) {
   app.use(morgan("dev"));
@@ -41,6 +48,8 @@ app.use(
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+
+    store: store,
   })
 );
 
