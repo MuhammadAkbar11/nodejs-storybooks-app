@@ -1,14 +1,20 @@
 @import "~bootstrap/scss/functions";
 
-@import "@scss/globals/index";
+@import "variables";
 @import "~bootswatch/dist/materia/variables";
 
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/root";
-@import "~bootstrap/scss/utilities";
+
+$custom-colors: (
+  "slate": $slate,
+  "secondary-light": $secondary-light,
+);
 
 $theme-colors: map-merge($theme-colors, $custom-colors);
+
+@import "~bootstrap/scss/utilities";
 
 @import "./utils/index";
 
