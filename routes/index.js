@@ -1,5 +1,6 @@
 const express = require("express");
 const { getIndex, getDashboard } = require("../controllers/app.controller");
+const { ensureAuth } = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -9,6 +10,6 @@ router.get("/", getIndex);
 
 // @desc Dashboard
 // @route GET /dashboard
-router.get("/dashboard", getDashboard);
+router.get("/dashboard", ensureAuth, getDashboard);
 
 module.exports = router;

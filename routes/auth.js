@@ -5,12 +5,13 @@ const {
   getGoogleAuthCallback,
   postLogout,
 } = require("../controllers/auth.controller");
+const { ensureGuest } = require("../middleware/auth");
 
 const router = express.Router();
 
 // @desc Login
 // @route GET /auth
-router.get("/", getLogin);
+router.get("/", ensureGuest, getLogin);
 
 // @desc Auth with Goole
 // @route GET /auth/google

@@ -14,8 +14,8 @@ module.exports = function (passport) {
         const newUser = {
           googleId: profile.id,
           displayName: profile.displayName,
-          firstName: profile.name?.familyName,
-          lastName: profile.name?.givenName,
+          firstName: profile.name?.familyName || profile.displayName,
+          lastName: profile.name?.givenName || "",
           image: profile.photos[0]?.value,
         };
 
@@ -30,7 +30,7 @@ module.exports = function (passport) {
           }
         } catch (error) {
           console.log(error);
-          throw new Error(error);
+          done(error, profile);
         }
       }
     )
