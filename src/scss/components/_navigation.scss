@@ -54,13 +54,13 @@
 
 .footer-nav {
   .nav-item .nav-link {
-    color: lighten($secondary, $amount: 30) !important;
+    color: $gray-700 !important;
     &:hover {
-      color: $light !important;
+      color: $primary !important;
     }
     &.active {
       font-weight: 800 !important;
-      color: $light !important;
+      color: $primary !important;
     }
   }
 }
