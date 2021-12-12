@@ -1,18 +1,23 @@
 @import "~bootstrap/scss/functions";
 
 @import "variables";
-@import "~bootswatch/dist/yeti/variables";
+@import "~bootswatch/dist/zephyr/variables";
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+  "slate": $slate,
+);
 
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/root";
-
-$custom-colors: (
-  "slate": $slate,
-  "secondary-light": $secondary-light,
-);
-
-$theme-colors: map-merge($theme-colors, $custom-colors);
 
 @import "~bootstrap/scss/utilities";
 
@@ -53,6 +58,6 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 @import "~bootstrap/scss/utilities/api";
 
-@import "~bootswatch/dist/yeti/bootswatch";
+@import "~bootswatch/dist/zephyr/bootswatch";
 
 @import "./components";
