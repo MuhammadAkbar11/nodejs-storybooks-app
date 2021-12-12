@@ -8,7 +8,9 @@ const connectDB = require("./config/db");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const connectFlash = require("connect-flash");
 const mainRoutes = require("./routes/index");
+const storyRoutes = require("./routes/story");
 const authRoutes = require("./routes/auth");
 const {
   NODE_ENV,
@@ -31,6 +33,13 @@ const store = MongoStore.create({
   mongoUrl: MONGO_URI,
   collection: "sessions",
 });
+
+// Body Parse
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+// Flash
+app.use(connectFlash());
 
 if (NODE_ENV === DEV_MODE) {
   app.use(morgan("dev"));
@@ -62,6 +71,7 @@ app.use(express.static(path.join(__dirname, "assets")));
 // Routes
 app.use("/", mainRoutes);
 app.use("/auth", authRoutes);
+app.use("/stories", storyRoutes);
 
 const MODE = NODE_ENV;
 
