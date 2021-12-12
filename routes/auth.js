@@ -9,8 +9,6 @@ const { ensureGuest } = require("../middleware/auth");
 
 const router = express.Router();
 
-// @desc Login
-// @route GET /auth
 router.get("/", ensureGuest, getLogin);
 
 // @desc Auth with Goole
@@ -22,8 +20,6 @@ router.get(
   })
 );
 
-// @desc Auth with Goole
-// @route GET /auth/google/callback
 router.get(
   "/google/callback",
   passport.authenticate("google", {
@@ -33,8 +29,6 @@ router.get(
   getGoogleAuthCallback
 );
 
-// @desc Auth Logout
-// @route POST /auth/logout
 router.post("/logout", postLogout);
 
 module.exports = router;
