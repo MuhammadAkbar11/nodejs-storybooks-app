@@ -2,13 +2,13 @@ const dotenv = require("dotenv");
 const path = require("path");
 const morgan = require("morgan");
 const express = require("express");
-const mongoose = require("mongoose");
 const passport = require("passport");
 const connectDB = require("./config/db");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const connectFlash = require("connect-flash");
+const hbsHelpers = require("./helpers/hbs");
 const mainRoutes = require("./routes/index");
 const storyRoutes = require("./routes/story");
 const authRoutes = require("./routes/auth");
@@ -46,7 +46,10 @@ if (NODE_ENV === DEV_MODE) {
 }
 
 // Handlebars
-app.engine("hbs", exphbs.engine({ defaultLayout: "main", extname: ".hbs" }));
+app.engine(
+  "hbs",
+  exphbs.engine({ helpers: hbsHelpers, defaultLayout: "main", extname: ".hbs" })
+);
 app.set("view engine", ".hbs");
 app.set("views", path.join(__dirname, "views/"));
 
