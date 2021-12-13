@@ -1,5 +1,24 @@
 const StoryModel = require("../models/Story");
+const { consoleDev } = require("../utils");
 const { NODE_ENV } = require("../utils/contants");
+
+// @desc Show Add Story Page
+// @route GET /stories/add
+exports.getPublicStories = async (req, res) => {
+  try {
+    const stories = await StoryModel.find({ status: "public" })
+      .populate("user")
+      .sort({ createdAt: "desc" })
+      .lean();
+    res.render("stories/index", {
+      title: "Public Stories",
+      path: "/stories",
+      stories,
+    });
+  } catch (error) {
+    consoleDev(error);
+  }
+};
 
 // @desc Show Add Story Page
 // @route GET /stories/add
