@@ -47,7 +47,19 @@
               <a class=" text-decoration-none text-primary text-capitalize " href="/stories/{{_id}}">{{title}}</a>
             </td>
             <td>{{formatDate createdAt "MMMM Do YYYY, hh:mm:ss a"}}</td>
-            <td class="text-uppercase">{{status}}</td>
+            <td class="text-uppercase">
+
+              {{#ifeq status 'public'}}
+              <span class="badge bg-success">
+                {{status}}
+              </span>
+              {{else}}
+              <span class="badge bg-dark">
+                {{status}}
+              </span>
+              {{/ifeq}}
+
+            </td>
             <td>
               <div class="d-flex gap-2 ">
                 <a href="/stories/{{_id}}" class="btn btn-outline-primary">

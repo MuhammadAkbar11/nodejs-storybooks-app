@@ -1,7 +1,13 @@
 const moment = require("moment");
 
 module.exports = {
-  formatDate: (date, format) => {
+  formatDate: function (date, format) {
     return moment(date).format(format);
+  },
+  ifeq: function (arg1, arg2, options) {
+    return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+  },
+  ifnoteq: function (arg1, arg2, options) {
+    return arg1 != arg2 ? options.fn(this) : options.inverse(this);
   },
 };
