@@ -37,12 +37,11 @@ module.exports = function (passport) {
   );
 
   passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user._id);
   });
 
   passport.deserializeUser((id, done) => {
-    console.log(id);
-    const user = UserModel.findById(id, function (err, user) {
+    UserModel.findById(id, function (err, user) {
       done(err, user);
     });
   });
