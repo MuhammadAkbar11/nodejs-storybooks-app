@@ -11,14 +11,24 @@
 
 <section class="mt-4">
   <div class="row d-flex no-gutters align-content-stretch align-items-stretch ">
+
     {{#if stories}}
     {{#each stories}}
     <div class="col-12 col-md-4 mb-4 ">
-      <div class="card h-100">
+      <div class="card card-story h-100">
+        {{#if (isAuthor user ../userAuth)}}
+        <div class="card-story-edit bg-white">
+          <a href="/stories/edit/{{_id}}" class="btn btn-primary btn-sm">
+            <i class="fas fa-edit"></i>
+          </a>
+        </div>
+        {{/if}}
         <div class="card-body ">
           <h5 class="card-title text-capitalize">{{title}}</h5>
           <div class="card-subtitle fst-italic mb-2 text-muted">
-            <a href="/stories/user/{{user._id}}" class="text-decoration-none text-muted">By {{user.displayName}}</a>
+
+            <a href="/stories/user/{{user._id}}" class="text-decoration-none text-muted">
+              {{user.displayName}}</a>
           </div>
           <p class="card-text">
             {{truncate (stripTags body) 90}}
@@ -26,7 +36,7 @@
 
         </div>
         <div class="card-footer bg-transparent border-0">
-          <a href="/stories/{{_id}}" class="btn btn-primary mt-auto">Read more</a>
+          <a href="/stories/{{_id}}" class="btn btn-outline-primary mt-auto">Read more</a>
         </div>
       </div>
     </div>

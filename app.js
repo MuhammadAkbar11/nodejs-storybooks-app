@@ -68,6 +68,15 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session({}));
+app.use((req, res, next) => {
+  if (req.user) {
+    res.locals.userAuth = req.user;
+  } else {
+    res.locals.userAuth = null;
+  }
+
+  next();
+});
 
 app.use(express.static(path.join(__dirname, "assets")));
 

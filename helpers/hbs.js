@@ -23,4 +23,10 @@ module.exports = {
   ifnoteq: function (arg1, arg2, options) {
     return arg1 != arg2 ? options.fn(this) : options.inverse(this);
   },
+  toString: function (value) {
+    return value?.toString() || value;
+  },
+  isAuthor: function (author, userLoggedIn) {
+    return author._id.toString() == userLoggedIn._id.toString();
+  },
 };
