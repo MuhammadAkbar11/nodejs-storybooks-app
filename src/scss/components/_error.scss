@@ -1,0 +1,29 @@
+.error-section {
+  min-height: 50vh;
+
+  & .error-icon {
+    font-size: 14vw;
+  }
+
+  & .error-icon-500 {
+    width: 10vw;
+  }
+
+  @include media-breakpoint-down(sm) {
+    & .error-icon {
+      font-size: 20vw;
+    }
+
+    & .error-title {
+      font-size: 1.2rem;
+    }
+
+    & .error-subtitle {
+      font-size: 1.1rem;
+    }
+
+    & .error-text {
+      font-size: 1rem;
+    }
+  }
+}

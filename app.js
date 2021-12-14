@@ -19,6 +19,7 @@ const {
   PORT,
   MONGO_URI,
 } = require("./utils/contants");
+const { get500, get404 } = require("./controllers/error.controller");
 
 // Load config
 dotenv.config({ path: "./config/config.env" });
@@ -84,6 +85,9 @@ app.use(express.static(path.join(__dirname, "assets")));
 app.use("/", mainRoutes);
 app.use("/auth", authRoutes);
 app.use("/stories", storyRoutes);
+
+app.use(get404);
+app.use((error, req, res, next) => get500(error, req, res, next));
 
 const MODE = NODE_ENV;
 

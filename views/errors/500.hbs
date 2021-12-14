@@ -1,0 +1,29 @@
+<section class="error-section text-dark mt-5 d-flex flex-column justify-content-center align-items-center h-100 ">
+  <div class="error-icon-500 text-danger my-2">
+    {{> _server-error-icon}}
+  </div>
+  <h2 class="mt-3 text-dark error-title ">Error 500 : Unexpected Error</h2>
+  <h5 class=" fw-normal fst-italic text-danger error-subtitle">Oppss.. Semething went wromg!</h5>
+  <p class="error-text mt-2">
+    We're experencing an internal server problem, please try again or <a href="/contact-us"
+      class="btn btn-link p-0 shadow-none "> Contact Us
+    </a>.
+  </p>
+  <div class="d-flex gap-2 py-2">
+    <a href="/" class="btn btn-outline-danger">Go back home</a>
+  </div>
+</section>
+
+
+{{#if stack}}
+<section class="py-3">
+  <div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading ">{{message}}</h4>
+
+    <hr>
+    <h6 style="color: currentColor;">Statuc Code : {{statusCode}}</h6>
+    <h6 style="color: currentColor;">Source : </h6>
+    <p class="mb-0">{{stack}}</p>
+  </div>
+</section>
+{{/if}}
