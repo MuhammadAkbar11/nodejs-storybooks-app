@@ -16,5 +16,13 @@ exports.postLogout = (req, res) => {
 // @desc Auth with Goole
 // @route GET /auth/google/callback
 exports.getGoogleAuthCallback = (req, res) => {
-  res.redirect("/dashboard");
+  try {
+    res.redirect("/dashboard");
+  } catch (error) {
+    req.flash("flashdata", {
+      type: "danger",
+      message: "Opps, Login failed please try again",
+    });
+    res.redirect("/auth");
+  }
 };
