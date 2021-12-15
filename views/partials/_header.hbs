@@ -2,7 +2,7 @@
   <nav class="header-havbar  py-3 navbar sticky-top navbar-expand-md navbar-light bg-transparent  shadow-sm  ">
     <div class="container navbar-container px-lg-3 ">
       <a class="navbar-brand text-uppercase text-primary" href="#">
-        <i class="fas me-1 fa-fw fa-book-reader "></i> StoryBooks </a>
+        St<i style="transform: scale(0.9);" class="fas fa-fw fa-book-reader "></i>ryBooks </a>
       <button class="navbar-toggler shadow-none toggle-mobile-menu border-0 " type="button" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -10,17 +10,22 @@
       </button>
       <div class="collapse navbar-collapse text-capitalize" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto header-nav">
-          <a class="nav-link " href="/">
+          <a class="nav-link {{setActiveClass path '/'}} " href="/">
             Home</a>
-          <a class="nav-link " href="/stories">Public Stories</a>
-          <a class="nav-link " href="/dashboard">Dashboard</a>
+          <a class="nav-link {{setActiveClass path '/stories'}} " href="/stories">Public Stories</a>
+          <a class="nav-link {{setActiveClass path '/dashboard'}} " href="/dashboard">Dashboard</a>
         </div>
+
+        {{#if userAuth}}
         <form action="/auth/logout" method="post">
-          <button type="submit"
-            class=" text-capitalize ms-3 btn btn-outline-primary  border border-primary  shadow-none">
+          <button type="submit" class=" text-capitalize ms-3 btn btn-outline-primary  border border-primary ">
             Logout
           </button>
         </form>
+        {{else}}
+        <a href="/auth" class=" text-capitalize ms-3 btn btn-outline-primary  border border-primary ">Login</a>
+        {{/if}}
+
       </div>
     </div>
   </nav>
