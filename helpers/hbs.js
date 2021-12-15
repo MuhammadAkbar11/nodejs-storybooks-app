@@ -29,4 +29,14 @@ module.exports = {
   isAuthor: function (author, userLoggedIn) {
     return author._id.toString() == userLoggedIn._id.toString();
   },
+  errorColor: function (statusCode) {
+    return statusCode === 500 ? `text-danger` : `text-primary`;
+  },
+  setErrorClass: function (statusCode, errClass, defaultClass) {
+    return statusCode === 500 ? errClass : defaultClass;
+  },
+  setActiveClass: function (currentPath, path) {
+    console.log(currentPath, path);
+    return currentPath == path ? `active` : ``;
+  },
 };
