@@ -15,17 +15,14 @@
 </head>
 
 <body class="p-0 d-flex flex-column " style="min-height: 100vh;">
-  {{> _header}}
+  {{> errors/_header}}
   <main class=" flex-grow-1 ">
     <div class="container h-100 py-4">
       {{{body}}}
     </div>
   </main>
-  <footer class="mt-auto py-3 text-center border-top">
-    <a class="navbar-brand text-uppercase text-primary" href="#">
-      St<i style="transform: scale(0.9);" class="fas fa-fw fa-book-reader "></i>ryBooks </a>
-  </footer>
-  {{> _mobile-menu}}
+  {{> errors/_footer}}
+  {{> errors/_sidebar}}
 </body>
 
 </html>
