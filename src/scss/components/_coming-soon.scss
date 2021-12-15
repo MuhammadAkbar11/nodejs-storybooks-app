@@ -1,0 +1,25 @@
+.coming-soon-section {
+  min-height: 50vh;
+
+  & .coming-soon-icon {
+    width: 11vw;
+  }
+
+  @include media-breakpoint-down(sm) {
+    & .coming-soon-icon {
+      width: 19vw;
+    }
+
+    & .coming-soon-title {
+      font-size: 1.2rem;
+    }
+
+    & .coming-soon-subtitle {
+      font-size: 1.1rem;
+    }
+
+    & .coming-soon-text {
+      font-size: 1rem;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/dist/css/main.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script defer src="/dist/js/main.min.js"></script>
+
+  <title>StoryBooks | {{title}} </title>
+</head>
+
+<body class="p-0 d-flex flex-column " style="min-height: 100vh;">
+  {{> coming-soon/_header}}
+  <main class=" flex-grow-1 ">
+    <div class="container h-100 py-4">
+      {{{body}}}
+    </div>
+  </main>
+  <footer class="mt-auto py-3 text-center border-top">
+    <a class="navbar-brand text-uppercase text-primary" href="#">
+      St<i style="transform: scale(0.9);" class="fas fa-fw fa-book-reader "></i>ryBooks </a>
+  </footer>
+  {{> coming-soon/_sidebar}}
+</body>
+
+</html>
