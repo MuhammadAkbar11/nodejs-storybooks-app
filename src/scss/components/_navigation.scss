@@ -10,9 +10,24 @@
     &.active,
     &[aria-current="page"] {
       font-weight: 500;
+      color: $primary !important;
       &:hover {
         font-weight: 500;
         color: $primary !important;
+      }
+    }
+
+    &.nav-link-danger {
+      &:hover {
+        color: $danger !important;
+      }
+      &.active,
+      &[aria-current="page"] {
+        font-weight: 500;
+        &:hover {
+          font-weight: 500;
+          color: $danger !important;
+        }
       }
     }
   }
@@ -27,11 +42,22 @@
   }
 }
 
-.mobile-menu {
-  & .mobile-menu-body .mobile-menu-nav {
+.sidebar {
+  & .sidebar-body .sidebar-nav {
     $py: 1rem * 0.3;
     .nav-item {
       padding: $py 0;
+      &.active {
+        background-color: darken($light, $amount: 5);
+        .nav-link {
+          font-weight: 800;
+          color: $primary;
+        }
+        .nav-link.nav-link-danger {
+          font-weight: 800;
+          color: $danger;
+        }
+      }
       &:hover {
         background-color: darken($light, $amount: 5);
       }
@@ -44,9 +70,11 @@
       &:hover {
         color: lighten($primary, $amount: 8);
       }
-      &.active {
-        font-weight: 800;
-        color: $primary;
+    }
+    .nav-item .nav-link.nav-link-danger {
+      color: $gray-600;
+      &:hover {
+        color: lighten($danger, $amount: 8);
       }
     }
   }
