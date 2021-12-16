@@ -6,26 +6,29 @@ exports.get404 = (req, res) => {
   });
 };
 
-exports.get500 = (error, req, res) => {
-  const isErrorsEmpty = obj => {
+exports.get500 = (error, req, res, next) => {
+  const isErrDataEmpty = obj => {
     return Object.keys(obj).length === 0;
   };
 
   const errData = {
     status: false,
-    statusCode: 500,
+    statusCode: error.statusCode,
     message: error.message,
-    errors: error.errors,
+    data: error.data,
     stack: process.env.NODE_ENV === "production" ? null : error.stack,
+    ...error.errors,
   };
 
-  if (error?.errors) {
-    if (isErrorsEmpty(error.errors)) {
-      delete errData.errors;
+  if (error?.data) {
+    if (isErrDataEmpty(error.data)) {
+      delete errData.data;
     }
   }
 
-  return res.status(500).render("errors/500", {
+  const renderView = error.statusCode === 404 ? "errors/404" : 500;
+
+  return res.status(error.statusCode).render(renderView, {
     pageTitle: "Something Error",
     path: "/500",
     layout: "error",
