@@ -5,13 +5,17 @@ const {
   getPublicStories,
   putEditStory,
   getEditStory,
+  deleteStory,
 } = require("../controllers/story.controller");
 const { ensureAuth } = require("../middleware/auth");
 
 const router = express.Router();
 
 router.get("/", getPublicStories);
-router.route("/:id").put(ensureAuth, putEditStory);
+router
+  .route("/:id")
+  .put(ensureAuth, putEditStory)
+  .delete(ensureAuth, deleteStory);
 router
   .route("/add")
   .get(ensureAuth, getAddStory)
