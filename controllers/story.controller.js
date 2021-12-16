@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const StoryModel = require("../models/Story");
+const UserModel = require("../models/User");
 const { consoleDev } = require("../utils");
 const { NODE_ENV } = require("../utils/contants");
 const ErrorResponse = require("../utils/error");
@@ -16,6 +17,67 @@ exports.getPublicStories = async (req, res) => {
       title: "Public Stories",
       path: "/stories",
       stories,
+    });
+  } catch (error) {
+    const errRes = new ErrorResponse(error);
+    res.status(404);
+    next(errRes);
+  }
+};
+
+// @desc Show user Stories
+// @route GET /stories/user/:id
+exports.getUserStories = async (req, res, next) => {
+  const userID = req.params.id;
+
+  try {
+    const getUser = await UserModel.findOne({ _id: userID }).lean();
+
+    if (!getUser) {
+      return res.render("errors/404-user", {
+        title: "User not found",
+        path: "/stories/user/not",
+      });
+    }
+
+    const stories = await StoryModel.find({ user: getUser._id })
+      .populate("user")
+      .lean();
+
+    return res.render("stories/user", {
+      title: getUser.displayName,
+      path: "/stories/user/",
+      stories: stories,
+      totalStories: stories.length,
+      user: getUser,
+    });
+  } catch (error) {
+    const errRes = new ErrorResponse(error);
+    res.status(404);
+    next(errRes);
+  }
+};
+
+// @desc Show Single Story
+// @route GET /stories/:id
+exports.getSingleStory = async (req, res, next) => {
+  try {
+    const story = await StoryModel.findById(req.params.id)
+      .populate("user")
+      .lean();
+
+    if (!story) {
+      res.status(404);
+      throw new ErrorResponse({
+        statusCode: 404,
+        message: "Story not found",
+      });
+    }
+
+    res.render("stories/single", {
+      title: story.title,
+      path: "/story",
+      story,
     });
   } catch (error) {
     const errRes = new ErrorResponse(error);
@@ -72,7 +134,7 @@ exports.getEditStory = async (req, res, next) => {
       res.status(404);
       throw new ErrorResponse({
         statusCode: 404,
-        message: "Product not found",
+        message: "Story not found",
       });
     }
 

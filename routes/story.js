@@ -6,14 +6,18 @@ const {
   putEditStory,
   getEditStory,
   deleteStory,
+  getSingleStory,
+  getUserStories,
 } = require("../controllers/story.controller");
 const { ensureAuth } = require("../middleware/auth");
 
 const router = express.Router();
 
 router.get("/", getPublicStories);
+router.get("/user/:id", getUserStories);
 router
   .route("/:id")
+  .get(getSingleStory)
   .put(ensureAuth, putEditStory)
   .delete(ensureAuth, deleteStory);
 router

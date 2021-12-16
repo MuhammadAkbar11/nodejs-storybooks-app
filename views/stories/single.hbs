@@ -1,0 +1,38 @@
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb border-0 shadow-none  p-lg-0  ">
+    <li class="breadcrumb-item"><a href="/" class="">Home</a></li>
+    <li class="breadcrumb-item"><a href="/stories" class="">Stories</a></li>
+    <li class="breadcrumb-item active text-capitalize" aria-current="page">{{story.title}}</li>
+  </ol>
+</nav>
+
+<section class="py-3">
+
+  <div class="row">
+
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <div class="card my-2 border-0 shadow-none">
+        <div
+          class="card-header bg-transparent border-0 d-flex justify-content-center flex-column align-items-center pb-0 ">
+          <h1 class=" text-capitalize ">{{story.title}}</h1>
+          <div class=" d-flex flex-column justify-content-center">
+            <img src="{{story.user.image}}" class="card-img-top mt-3 mb-2 rounded-circle mx-auto" style="width: 70px;"
+              alt="{{story.title}}">
+            <div class="mb-0 text-center d-flex align-items-center gap-1">By
+              <a class="btn btn-link shadow-none my-auto  p-0" href="/stories/user/{{story.user._id}}">
+                {{story.user.displayName}}
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <hr class="mb-5">
+          {{{story.body}}}
+          <p class=" text-end mt-4 ">{{formatDate story.createdAt "dddd, MMM DD YYYY"}}</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
