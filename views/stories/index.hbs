@@ -16,12 +16,14 @@
     {{#each stories}}
     <div class="col-12 col-md-4 mb-4 ">
       <div class="card card-story h-100">
+        {{#if userAuth}}
         {{#if (isAuthor user ../userAuth)}}
         <div class="card-story-edit bg-white">
           <a href="/stories/edit/{{_id}}" class="btn btn-primary btn-sm">
             <i class="fas fa-edit"></i>
           </a>
         </div>
+        {{/if}}
         {{/if}}
         <div class="card-body ">
           <h5 class="card-title text-capitalize">{{title}}</h5>
