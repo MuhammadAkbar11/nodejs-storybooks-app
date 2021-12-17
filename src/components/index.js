@@ -1,1 +1,3 @@
-import "./modal.js";
+import "./modal";
+import "./sidebar";
+import "./breadcrumb";
