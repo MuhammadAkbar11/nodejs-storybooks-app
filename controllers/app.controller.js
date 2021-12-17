@@ -10,6 +10,26 @@ exports.getIndex = (req, res) => {
   });
 };
 
+// @desc About Page
+// @route GET /about
+exports.getAbout = (req, res) => {
+  res.render("coming-soon", {
+    layout: "coming-soon",
+    title: "About us",
+    path: "/about",
+  });
+};
+
+// @desc Contact Page
+// @route GET /contact
+exports.getContact = (req, res) => {
+  res.render("coming-soon", {
+    layout: "coming-soon",
+    title: "Contact ",
+    path: "/contact",
+  });
+};
+
 // @desc Dashboard
 // @route GET /dashboard
 exports.getDashboard = async (req, res, next) => {

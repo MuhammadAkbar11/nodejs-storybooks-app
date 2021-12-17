@@ -5,7 +5,8 @@
   </ol>
 </nav>
 
-<section class="py-1 w-100 d-flex justify-content-between">
+<section
+  class="py-1 w-100 d-flex justify-content-between animate__fast animate__animated animate__fadeInUp animate__delay-d4s">
   <h3>Welcome {{user.name}}</h3>
 
 </section>
@@ -22,14 +23,14 @@
 {{/if}}
 
 <section class="py-2 w-100">
-  <div class="card">
+  <div class="card animate__fast animate__animated animate__fadeInUp animate__delay-d4">
     <div class="card-header border-0 bg-transparent">
       <a href="/stories/add" class="  btn btn-primary">
         <i class="fas fa-plus fa-fw me-1"></i> Add Story
       </a>
     </div>
 
-    <div class=" card-body ">
+    <div class=" card-body  ">
       {{#if stories}}
       <table class="table shadow-none table-striped">
         <thead class="border">

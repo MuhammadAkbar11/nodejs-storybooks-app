@@ -7,3 +7,4 @@
 - [ ] User Update Profile
 - [ ] About Page
 - [ ] Contact Page
+- [ ] Pagination
