@@ -25,6 +25,8 @@ module.exports = {
     extensions: [".css", ".scss", ".js", ".jsx", ".json"],
     alias: {
       "@scss": path.resolve(__dirname, "..", "src/scss"),
+      "@css": path.resolve(__dirname, "..", "src/css"),
+      "@node_modules": path.resolve(__dirname, "..", "node_modules"),
       "~bootstrap": path.resolve(__dirname, "..", "node_modules/bootstrap"),
     },
   },
@@ -36,13 +38,31 @@ module.exports = {
         use: ["babel-loader"],
       },
       {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [require("postcss-import"), require("autoprefixer")],
+              },
+            },
+          },
+          "sass-loader",
+        ],
+      },
+      {
         test: /\.s[ac]ss$/i,
         exclude: /node_modules/,
+        include: [path.resolve(__dirname, "..", "src/scss")],
         use: [
           { loader: MiniCssExtractPlugin.loader },
           "css-loader",
-          "sass-loader",
           "postcss-loader",
+          "sass-loader",
         ],
       },
       {

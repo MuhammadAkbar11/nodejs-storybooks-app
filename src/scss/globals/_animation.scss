@@ -1,0 +1,17 @@
+$delays: (
+  "d3s": 0.3s,
+  "d4s": 0.4s,
+  "d5s": 0.5s,
+  "d6s": 0.6s,
+  "d7s": 0.7s,
+  "d8s": 0.8s,
+  "d9s": 0.9s,
+  "1d5s": 1.5s,
+  "2d5s": 2.5s,
+);
+
+@each $name, $time in $delays {
+  .animate__delay-#{$name} {
+    animation-delay: $time;
+  }
+}

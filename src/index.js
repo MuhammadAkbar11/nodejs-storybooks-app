@@ -1,4 +1,5 @@
 import "@scss/index.scss";
+import "@css/index.css";
 import "./components";
 import * as bootstrap from "bootstrap";
 
