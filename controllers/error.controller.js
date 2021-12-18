@@ -12,7 +12,7 @@ exports.get500 = (error, req, res, next) => {
   };
 
   const errData = {
-    status: false,
+    name: error.name,
     statusCode: error.statusCode,
     message: error.message,
     data: error.data,
@@ -26,7 +26,7 @@ exports.get500 = (error, req, res, next) => {
     }
   }
 
-  const renderView = error.statusCode === 404 ? "errors/404" : 500;
+  const renderView = error.statusCode === 404 ? "errors/404" : "errors/500";
 
   return res.status(error.statusCode).render(renderView, {
     pageTitle: "Something Error",

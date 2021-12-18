@@ -5,16 +5,25 @@
   </ol>
 </nav>
 
-<section class="py-3  text-center ">
-  <h3 class="text-uppercase">Public Stories</h3>
+<section class="py-3  text-center animate__animated animate__fadeInUp  animate__fast animate__delay-d9s   ">
+  <h3 class="text-uppercase ">Public Stories</h3>
 </section>
 
 <section class="mt-4">
   <div class="row d-flex no-gutters align-content-stretch align-items-stretch ">
-
     {{#if stories}}
+    <div class="col-12 mb-3 animate__animated animate__bounceInUp animate__delay-1s ">
+      <form action="/stories" method="get">
+        <div class="mb-3 d-flex gap-2">
+          <input type="text" class="form-control form-control-lg" id="search" name="search" value="{{search}}"
+            placeholder="Type here for search">
+          <input type="hidden" class="form-control" id="page" value="{{currentPage}}" name="page">
+          <button class="btn btn-primary btn-animation" type="submit"><i class=" fas fa-search "></i></button>
+        </div>
+      </form>
+    </div>
     {{#each stories}}
-    <div class="col-12 col-md-4 mb-4 ">
+    <div class="col-12 col-md-4 mb-4 story-box ">
       <div class="card card-story h-100">
         {{#if ../userAuth}}
         {{#if (isAuthor user ../userAuth)}}
@@ -38,16 +47,46 @@
 
         </div>
         <div class="card-footer bg-transparent border-0">
-          <a href="/stories/{{_id}}" class="btn btn-outline-primary mt-auto">Read more</a>
+          <a href="/stories/{{_id}}" class="btn btn-outline-primary btn-animation mt-auto">Read more</a>
         </div>
       </div>
     </div>
     {{/each}}
     {{else}}
-    <div class=" col-12 d-flex justify-content-center flex-column align-items-center  w-100 mt-3">
-      <i class=" fas fa-sad-tear fa-4x "></i>
-      <p class="mt-3">No stories</p>
+    <div
+      class=" col-12 d-flex justify-content-center  flex-column align-items-center animate__animated animate__bounceIn animate__delay-1s w-100 mt-3">
+      <i class=" fas fa-sad-tear fa-4x  "></i>
+      <p class="mt-3 ">No stories</p>
     </div>
     {{/if}}
   </div>
+
+  {{#if stories}}
+  <div class="row mt-5 " id="pagination">
+    <div class="col-md-6  mx-auto">
+      <nav aria-label="...">
+        <ul class="pagination justify-content-center">
+          <li class="page-item {{isDisabled hasPreviousPage}} ">
+            <a href="?page={{prevPage}}{{#if ../search}}&search={{../search}}{{/if}}" class="page-link">Previous</a>
+          </li>
+
+          {{#each paginations}}
+          {{#ifeq this ../currentPage}}
+          <li class="page-item active" aria-current="page">
+            <span class="page-link">{{this}}</span>
+          </li>
+          {{else}}
+          <li class="page-item " aria-current="page">
+            <a href="?page={{this}}{{#if ../search}}&search={{../search}}{{/if}}" class="page-link">{{this}}</a>
+          </li>
+          {{/ifeq}}
+          {{/each}}
+          <li class="page-item {{isDisabled hasNextPage}}">
+            <a class="page-link" href="?page={{nxPage}}{{#if ../search}}&search={{../search}}{{/if}}">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  {{/if}}
 </section>

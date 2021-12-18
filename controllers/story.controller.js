@@ -1,26 +1,60 @@
 const mongoose = require("mongoose");
+const paginate = require("../helpers/pagination");
 const StoryModel = require("../models/Story");
 const UserModel = require("../models/User");
-const { consoleDev } = require("../utils");
+const { consoleDev, rgx } = require("../utils");
 const { NODE_ENV } = require("../utils/contants");
 const ErrorResponse = require("../utils/error");
 
+const ITEM_PER_PAGE = 9;
+
 // @desc Show Add Story Page
 // @route GET /stories/add
-exports.getPublicStories = async (req, res) => {
+exports.getPublicStories = async (req, res, next) => {
+  const { page, search } = req.query;
+
+  const currPage = Number(page) || 1;
+  const limit = ITEM_PER_PAGE;
+
+  const searchRgx = rgx(search);
+
+  const query = search
+    ? {
+        $or: [{ title: { $regex: searchRgx, $options: "i" } }],
+      }
+    : {};
+
   try {
-    const stories = await StoryModel.find({ status: "public" })
+    const count = await StoryModel.countDocuments({
+      status: "public",
+      ...query,
+    });
+
+    const stories = await StoryModel.find({ status: "public", ...query })
       .populate("user")
       .sort({ createdAt: "desc" })
+      .limit(limit)
+      .skip(limit * (currPage - 1))
       .lean();
+
+    const pagination = paginate(currPage, limit, count);
+
     res.render("stories/index", {
       title: "Public Stories",
       path: "/stories",
+      search: search || "",
       stories,
+      ...pagination,
     });
   } catch (error) {
-    const errRes = new ErrorResponse(error);
-    res.status(404);
+    const errRes = new ErrorResponse({
+      name: error.name,
+      statusCode: error.statusCode,
+      message: error.message,
+      ...error,
+    });
+
+    console.log("Ref Error", error.ReferenceError);
     next(errRes);
   }
 };

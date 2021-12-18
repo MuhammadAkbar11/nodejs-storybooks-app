@@ -1,11 +1,13 @@
 function ErrorResponse({
+  name,
   statusCode = 500,
-  message = "Something went wrong",
+  message,
   data = {},
   ...errors
 }) {
   this.statusCode = statusCode;
-  this.message = message;
+  this.name = name;
+  this.message = message || "Something went wrong";
   this.data = { ...data };
   this.message = message;
   this.stack = new Error().stack;
