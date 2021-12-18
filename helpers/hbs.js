@@ -36,7 +36,6 @@ module.exports = {
     return statusCode === 500 ? errClass : defaultClass;
   },
   setActiveClass: function (currentPath, path) {
-    console.log(currentPath, path);
     return currentPath == path ? `active` : ``;
   },
   select: function (selected, options) {
@@ -50,5 +49,11 @@ module.exports = {
         new RegExp(">" + selected + "</option>"),
         ' selected="selected"$&'
       );
+  },
+  plus: function (value, num) {
+    return Number(value) + num;
+  },
+  isDisabled: function (value) {
+    return !value && "disabled";
   },
 };
