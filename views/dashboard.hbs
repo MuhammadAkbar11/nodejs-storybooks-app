@@ -12,9 +12,9 @@
 </section>
 
 {{#if flashdata}}
-<section class="py-2">
+<section class="py-2 ">
   {{#each flashdata}}
-  <div class="alert alert-{{type}} alert-dismissible fade show " role="alert">
+  <div class="alert alert-{{type}} alert-dismissible fade show animate__animated animate__bounceIn " role="alert">
     {{message}}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
@@ -23,9 +23,9 @@
 {{/if}}
 
 <section class="py-2 w-100">
-  <div class="card animate__fast animate__animated animate__fadeInUp animate__delay-d4">
+  <div class="card animate__fast animate__animated animate__fadeIn ">
     <div class="card-header border-0 bg-transparent">
-      <a href="/stories/add" class="  btn btn-primary">
+      <a href="/stories/add" class="  btn btn-animation btn-primary">
         <i class="fas fa-plus fa-fw me-1"></i> Add Story
       </a>
     </div>
@@ -63,14 +63,14 @@
             </td>
             <td>
               <div class="d-flex gap-2 ">
-                <a href="/stories/{{_id}}" class="btn btn-outline-primary">
+                <a href="/stories/{{_id}}" class="btn btn-animation btn-outline-primary">
                   <i class="fas fa-info"></i>
                 </a>
-                <a href="/stories/edit/{{_id}}" class="btn btn-primary">
+                <a href="/stories/edit/{{_id}}" class="btn btn-animation btn-primary">
                   <i class="fas fa-edit"></i>
                 </a>
-                <button type="button" class="btn btn-outline-danger" data-bs-storyId="{{_id}}" data-bs-toggle="modal"
-                  data-bs-target="#modalDeleteStory">
+                <button type="button" class="btn btn-animation btn-outline-danger" data-bs-storyId="{{_id}}"
+                  data-bs-toggle="modal" data-bs-target="#modalDeleteStory">
                   <i class="fas fa-trash"></i>
                 </button>
               </div>
@@ -105,8 +105,8 @@
         <form action="/stories" id="modalDeleteStoryForm" method="post">
           <input type="hidden" name="_method" value="DELETE">
           <div class="d-flex w-100 justify-content-center gap-2">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-danger">Delete Story</button>
+            <button type="button" class="btn btn-animation btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-animation btn-danger">Delete Story</button>
           </div>
 
         </form>
