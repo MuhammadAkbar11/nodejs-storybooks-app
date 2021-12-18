@@ -19,3 +19,38 @@ export const removeAnimateClass = element => {
     }
   });
 };
+
+export const addMultipleClass = (el, clsNames) => {
+  clsNames.split(" ").map(cls => {
+    el.classList.add(cls);
+  });
+};
+
+const appearOptionsDefault = {
+  mt: "250px",
+  mr: "0px",
+  mb: "0px",
+  ml: "0px",
+};
+
+export const appearOnScroll = (classNames, options = appearOptionsDefault) =>
+  new IntersectionObserver(
+    function (entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          return;
+        } else {
+          addMultipleClass(entry.target, classNames);
+          appearOnScroll.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0,
+      rootMargin: `${options.mt} ${options.mr} ${options.mb} ${options.ml}`,
+    }
+  );
+
+// faders.forEach(fader => {
+//   appearOnScroll.observe(fader);
+// });
