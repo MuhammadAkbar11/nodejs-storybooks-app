@@ -1,0 +1,6 @@
+.btn {
+  &.btn-animation:hover {
+    animation-name: tada;
+    animation-duration: 0.8s;
+  }
+}

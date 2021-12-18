@@ -4,5 +4,9 @@
     position: absolute;
     top: -5%;
     right: -3%;
+    &:hover {
+      animation-name: tada !important;
+      animation-duration: 1s;
+    }
   }
 }
