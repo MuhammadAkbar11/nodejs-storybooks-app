@@ -6,4 +6,10 @@ module.exports = {
       return console.log(value);
     }
   },
+  // regex for search pattern
+  rgx: pattern => new RegExp(`.*${pattern}.*`),
+  // random select
+  randomSelect: arr => {
+    return arr[Math.floor(Math.random() * arr.length)];
+  },
 };
