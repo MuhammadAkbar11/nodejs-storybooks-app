@@ -13,6 +13,7 @@
   }
 
   .feature-box:hover .feature-icon {
+    animation: bounce 1s;
     background-color: $primary !important;
     color: $light !important;
     transition: 0.4s all ease-in-out;
