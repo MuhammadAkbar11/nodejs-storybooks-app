@@ -62,6 +62,11 @@ exports.getPublicStories = async (req, res, next) => {
 // @desc Show user Stories
 // @route GET /stories/user/:id
 exports.getUserStories = async (req, res, next) => {
+  const { page } = req.query;
+
+  const currPage = Number(page) || 1;
+  const limit = ITEM_PER_PAGE;
+
   const userID = req.params.id;
 
   try {
@@ -74,16 +79,29 @@ exports.getUserStories = async (req, res, next) => {
       });
     }
 
-    const stories = await StoryModel.find({ user: getUser._id })
+    const count = await StoryModel.countDocuments({
+      status: "public",
+      user: getUser._id,
+    });
+
+    const stories = await StoryModel.find({
+      status: "public",
+      user: getUser._id,
+    })
       .populate("user")
+      .limit(limit)
+      .skip(limit * (currPage - 1))
       .lean();
+
+    const pagination = paginate(currPage, limit, count);
 
     return res.render("stories/user", {
       title: getUser.displayName,
       path: "/stories/user/",
       stories: stories,
-      totalStories: stories.length,
+      totalStories: count,
       user: getUser,
+      ...pagination,
     });
   } catch (error) {
     const errRes = new ErrorResponse(error);
