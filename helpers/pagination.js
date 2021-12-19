@@ -1,14 +1,24 @@
 function paginate(currentPage, limit, count) {
   const totalPages = Math.ceil(count / limit);
 
-  let paginations = [...Array(totalPages).keys()].map(item => item + 1);
-
-  const currentPageIndex = paginations.indexOf(currentPage);
-
-  if (currentPage >= 5) {
-    paginations = paginations.slice(currentPageIndex, currentPage + 4);
+  const paginationArr = [...Array(totalPages).keys()].map(item => item + 1);
+  let paginationItems = [];
+  const currentPageIndex = paginationArr.indexOf(currentPage);
+  const maxLastPgItems = totalPages - 5;
+  if (currentPage >= 5 && totalPages >= 5) {
+    if (currentPage >= maxLastPgItems) {
+      paginationItems = paginationArr.slice(
+        maxLastPgItems,
+        paginationArr[paginationArr.length - 1]
+      );
+    } else {
+      paginationItems = paginationArr.slice(
+        currentPageIndex,
+        currentPageIndex + 5
+      );
+    }
   } else {
-    paginations = paginations.slice(0, 5);
+    paginationItems = paginationArr.slice(0, 5);
   }
 
   return {
@@ -18,7 +28,7 @@ function paginate(currentPage, limit, count) {
     pages: totalPages,
     hasNextPage: limit * currentPage < count,
     hasPreviousPage: currentPage > 1,
-    paginations,
+    paginations: paginationItems,
   };
 }
 
