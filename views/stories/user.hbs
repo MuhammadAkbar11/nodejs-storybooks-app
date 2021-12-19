@@ -26,7 +26,7 @@
   <div class="row d-flex no-gutters align-content-stretch align-items-stretch ">
     {{#if stories}}
     {{#each stories}}
-    <div class="col-12 col-md-4 mb-4 ">
+    <div class="col-12 col-md-4 mb-4 story-box ">
       <div class="card card-story h-100">
         {{#if ../userAuth}}
         {{#if (isAuthor user ../userAuth)}}
@@ -50,7 +50,7 @@
 
         </div>
         <div class="card-footer bg-transparent border-0">
-          <a href="/stories/{{_id}}" class="btn btn-outline-primary mt-auto">Read more</a>
+          <a href="/stories/{{_id}}" class="btn btn-outline-primary mt-auto btn-animation">Read more</a>
         </div>
       </div>
     </div>
@@ -62,4 +62,33 @@
     </div>
     {{/if}}
   </div>
+
+  {{#if stories}}
+  <div class="row mt-5 " id="pagination">
+    <div class="col-md-6  mx-auto">
+      <nav aria-label="...">
+        <ul class="pagination justify-content-center">
+          <li class="page-item {{isDisabled hasPreviousPage}} ">
+            <a href="?page={{prevPage}}" class="page-link">Previous</a>
+          </li>
+
+          {{#each paginations}}
+          {{#ifeq this ../currentPage}}
+          <li class="page-item active" aria-current="page">
+            <span class="page-link">{{this}}</span>
+          </li>
+          {{else}}
+          <li class="page-item " aria-current="page">
+            <a href="?page={{this}}" class="page-link">{{this}}</a>
+          </li>
+          {{/ifeq}}
+          {{/each}}
+          <li class="page-item {{isDisabled hasNextPage}}">
+            <a class="page-link" href="?page={{nxPage}}">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  {{/if}}
 </section>
