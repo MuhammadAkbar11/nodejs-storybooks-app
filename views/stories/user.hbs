@@ -7,26 +7,32 @@
 </nav>
 
 <section class="pb-3 text-center ">
-  <div class="card card-body border-0 shadow-lg ">
-    <h3 class="text-uppercase mt-3">{{user.displayName}}</h3>
+  <div class="card card-body border-0 shadow-lg animate__animated animate__fadeIn  animate__fast animate__delay-d1s">
+    <h3 class="text-uppercase mt-3 animate__animated animate__fadeInUp  animate__fast animate__delay-d2s ">
+      {{user.displayName}}</h3>
     <div class=" d-flex flex-column justify-content-center">
-      <img src="{{user.image}}" class="card-img-top mt-3 mb-2 rounded-circle mx-auto" style="width: 70px;"
-        alt="{{story.title}}">
-      <p><span class=" fw-bold text-dark ">Join at : </span>{{formatDate user.createdAt "MMMM, DD YYYY"}}</p>
-      <div class=" ">
+      <img src="{{user.image}}"
+        class="card-img-top mt-3 mb-2 rounded-circle mx-auto animate__animated animate__bounceIn  animate__delay-d6s "
+        style="width: 70px;" alt="{{story.title}}">
+      <p class="animate__animated animate__fadeInUp  animate__fast animate__delay-d3s"><span
+          class=" fw-bold text-dark ">Join at : </span>{{formatDate user.createdAt "MMMM, DD YYYY"}}</p>
+      <div class="animate__animated animate__fadeInUp  animate__fast animate__delay-d4s ">
         <h6 class="my-0 text-primary">{{totalStories}}</h6>
         <h6 class="my-0 text-primary"> <small>Stories</small> </h6>
       </div>
     </div>
   </div>
 </section>
-<hr>
+<div class="animate__animated animate__fadeIn  animate__fast animate__delay-d6s">
+  <hr>
+</div>
+
 
 <section class="mt-4">
   <div class="row d-flex no-gutters align-content-stretch align-items-stretch ">
     {{#if stories}}
     {{#each stories}}
-    <div class="col-12 col-md-4 mb-4 story-box ">
+    <div class="col-12 col-md-6 col-lg-4 mb-4 story-box ">
       <div class="card card-story h-100">
         {{#if ../userAuth}}
         {{#if (isAuthor user ../userAuth)}}
