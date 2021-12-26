@@ -10,6 +10,7 @@ const {
   getUserStories,
 } = require("../controllers/story.controller");
 const { ensureAuth } = require("../middleware/auth");
+const createStorySchema = require("../middleware/storySchema");
 
 const router = express.Router();
 
@@ -18,7 +19,7 @@ router.get("/", getPublicStories);
 router
   .route("/add")
   .get(ensureAuth, getAddStory)
-  .post(ensureAuth, postAddStory);
+  .post(ensureAuth, [createStorySchema], postAddStory);
 router.get("/edit/:id", ensureAuth, getEditStory);
 router.get("/user/:id", getUserStories);
 router

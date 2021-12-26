@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
+const { validationResult } = require("express-validator");
 const paginate = require("../helpers/pagination");
 const StoryModel = require("../models/Story");
 const UserModel = require("../models/User");
 const { consoleDev, rgx } = require("../utils");
 const { NODE_ENV } = require("../utils/contants");
 const ErrorResponse = require("../utils/error");
+const errValidationMessage = require("../utils/errValidationMessage");
 
 const ITEM_PER_PAGE = 9;
 
@@ -145,6 +147,7 @@ exports.getAddStory = (req, res) => {
     res.render("stories/add", {
       title: "Add Story",
       path: "/stories/add",
+      errors: null,
     });
   } catch (error) {
     const errRes = new ErrorResponse(error);
@@ -159,6 +162,17 @@ exports.postAddStory = async (req, res) => {
   const { title, body, status } = req.body;
   const user = req.user._id;
 
+  const validate = validationResult(req);
+
+  const validateMessage = errValidationMessage(validate.array());
+
+  if (!validate.isEmpty()) {
+    return res.status(422).render("stories/add", {
+      title: "Add Story",
+      path: "/stories/add",
+      errors: validateMessage,
+    });
+  }
   try {
     await StoryModel.create({ title: title, body, status, user });
 

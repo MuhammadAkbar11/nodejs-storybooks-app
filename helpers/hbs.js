@@ -56,4 +56,12 @@ module.exports = {
   isDisabled: function (value) {
     return !value && "disabled";
   },
+  isInvalidForm: function (errors, name) {
+    if (errors && errors[name]) {
+      return `
+      <div class="form-text text-danger">
+        ${errors[name].message[0]}
+      </div>`;
+    }
+  },
 };
