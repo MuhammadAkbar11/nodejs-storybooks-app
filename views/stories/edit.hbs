@@ -7,20 +7,20 @@
 </nav>
 
 <section class="py-3 text-center ">
-  <h3 class="text-uppercase">Edit Story</h3>
+  <h3 class="text-uppercase animate__animated animate__fadeInUp  animate__fast animate__delay-d2s">Edit Story</h3>
 </section>
 
 <section class="pb-5">
   <div class="row">
     <div class="col-md-6 mx-auto">
       <form action="/stories/{{story._id}}" method="POST">
-        <div class="mb-3">
+        <div class="mb-3  animate__animated animate__fadeInUp  animate__fast animate__delay-d3s">
           <input type="hidden" name="_method" value="PUT">
           <label for="title" class="form-label">Title</label>
           <input type="text" class="form-control" name="title" id="title" value="{{story.title}}">
           <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
-        <div class="mb-3">
+        <div class="mb-3  animate__animated animate__fadeInUp  animate__fast animate__delay-d4s">
           <label for="status" class="form-label">Status</label>
           <select class="form-select text-capitalize" name="status" aria-label="status">
             {{#select story.status}}
@@ -30,14 +30,16 @@
           </select>
           <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
-        <div class="mb-3">
+        <div class="mb-3  animate__animated animate__fadeInUp  animate__fast animate__delay-d5s">
           <label for="body" class="form-label">Body</label>
           <textarea class="form-control" id="body" name="body" rows="3">{{story.body}}</textarea>
 
           <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a href="/dashboard" class="btn btn-dark ms-1">Cancel</a>
+        <div class="animate__animated animate__fadeInUp  animate__fast animate__delay-d7s">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <a href="/dashboard" class="btn btn-dark ms-1">Cancel</a>
+        </div>
       </form>
     </div>
   </div>
