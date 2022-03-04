@@ -1,7 +1,9 @@
 const dotenv = require("dotenv");
-dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: ".env" });
 
 const devMode2 = process.argv.find(arg => arg.includes("--dev2"));
+
+console.log(process.env.GOOGLE_CLIENT_ID);
 
 exports.PORT = process.env.PORT || 3000;
 exports.MONGO_URI = devMode2 ? process.env.MONGO_URI2 : process.env.MONGO_URI;
