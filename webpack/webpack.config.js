@@ -1,15 +1,20 @@
+const dotenv = require("dotenv");
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
+dotenv.config({ path: ".env" });
+
+const mode = process.env.NODE_ENV;
+
 module.exports = {
   entry: {
     main: path.resolve(__dirname, "../src/index.js"),
   },
   devtool: "source-map",
-  watch: true,
+  watch: mode === "development" ? true : false,
   watchOptions: {
     ignored: /node_modules/,
     aggregateTimeout: 200,

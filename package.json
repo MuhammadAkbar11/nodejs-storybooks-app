@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "engines": {
     "node": "14.17.x",
-    "yarn": "1.22.17"
+    "yarn": "1.22.x"
   },
   "description": "Application to create public and private stories",
   "main": "app.js",
