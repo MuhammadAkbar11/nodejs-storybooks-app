@@ -23,7 +23,7 @@ const {
 const { get500, get404 } = require("./controllers/error.controller");
 
 // Load config
-dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: ".env" });
 
 // Passport config
 require("./config/passport")(passport);
