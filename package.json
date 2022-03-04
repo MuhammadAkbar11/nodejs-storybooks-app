@@ -8,7 +8,8 @@
     "start": "cross-env NODE_ENV=production node app.js",
     "dev": "cross-env NODE_ENV=development nodemon app.js",
     "dev2": "cross-env NODE_ENV=development nodemon app.js --dev2",
-    "webpack": "webpack  --config ./webpack/webpack.config.js "
+    "build": "webpack  --config ./webpack/webpack.config.js ",
+    "heroku-postbuild": "yarn build"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.0",
