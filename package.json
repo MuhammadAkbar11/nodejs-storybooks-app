@@ -2,8 +2,8 @@
   "name": "nodejs-storybook",
   "version": "1.0.0",
   "engines": {
-    "node": "14.19.x",
-    "yarn": "1.22.x"
+    "node": "14.19.0",
+    "yarn": "1.22.19"
   },
   "description": "Application to create public and private stories",
   "main": "app.js",
